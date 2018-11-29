@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+     <title>Registro Mis Perris</title> 
+     {% load static %}
+     <link rel="stylesheet" href="{% static 'core/css/estilos.css' %}">
+     <link rel="stylesheet" href="{% static 'core/css/registro.css' %}">
+</head> 
+    <body>
+        <div class="registro"></div>
+            <header>
+                <img class="logo" src="{% static 'core/img/logo.png' %}" alt="Logo">
+                <ul class="navigation">
+                <li>
+                    <a href="{% url 'home' %}">Inicio</a>
+                </li>
+                <li>
+                    <a href="{% url 'registro' %}" target="">Registro</a>
+                </li>
+					{% if request.user.is_authenticated %}
+				<li>
+					<a href="{% url 'logout' %}">Cerrar sesión</a>
+				</li>
+				<li>
+					<a href="">Hola {{ request.user.first_name }} </a>
+				</li>
+					{% else %}
+				<li>
+					<a href="{% url 'login' %}">Iniciar sesión</a>
+				</li>
+				
+					{% endif %}
+                </ul>
+            </header>
+        </div>
+        <div class="responsive" >
+            <div  class="contenedor" style="width: 420px;margin-left: 460px;">
+                <form action="" method="POST" id="clienteFormulario">
+                    {% csrf_token %}
+                    <table class="center" class="border">
+                    <tr>
+                        <td class="col-25">
+                            <label for=""><em>*</em>Correo: </label>
+                        </td>
+                        <td class="col-75">
+                            <input class="txtbox" type="email" name="txtCorreo" id="txtCorreo" placeholder="Correo electronico" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-25">
+                            <label for=""><em>*</em>Clave: </label>
+                        </td>
+                        <td  class="col-75">
+                            <input minlength="1" maxlength="25" class="txtbox" type="password" name="txtClave" id="txtClave" placeholder="Contraseña" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-25">
+                            <label for=""><em>*</em>RUT: </label>
+                        </td>
+                        <td class="col-75">
+                            <input class="txtbox" type="text" name="txtRut" id="txtRut" placeholder="Rut" required>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-25">
+                                <label for=""><em>*</em>Nombre: </label>
+                            </td>
+                            <td class="col-75">
+                                <input class="txtbox" type="text" name="txtNombre" id="txtNombre" placeholder="Nombre" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-25">
+                                <label for=""><em>*</em>Apellido: </label>
+                            </td>
+                            <td class="col-75">
+                                <input class="txtbox" type="text" name="txtApellido" id="txtApellido" placeholder="Apellido" required>
+                            </td>
+                        </tr>
+                        <tr>
+                        <td class="col-25">
+                            <label for=""><em>*</em>Fecha nacimiento: </label>
+                        </td>
+                        <td class="col-75">
+                            <input class="datebox" type="date" name="txtFechaNacimiento" id="txtFechaNacimiento" required>
+                        </td>
+                        </tr>
+                        <tr>
+                                    <tr>
+                        <td class="col-25">
+                            <label for=""><em>*</em>Telefono: +569</label>
+                        </td>
+                        <td class="col-75">
+                            <input class="txtbox" type="text" name="txtTelefono" id="txtTelefono" placeholder="Numero telefono"required>
+                        </td>
+                        </tr>
+                        <tr>
+                            <td class="col-25">
+                                <label for=""><em>*</em>Región</label>
+                            </td>
+                            <td class="col-75">
+                                <select name="cboRegion" id="cboRegion" required>
+                                    <option value="">Seleccionar</option> 
+                                    {% for r in region %}
+                                    <option value="{{ r.id }}">
+                                        {{ r.descripcionRegion }}
+                                    </option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-25">
+                                <label for=""><em>*</em>Tipo Vivienda</label>
+                            </td>
+                            <td class="col-75">
+                                <select name="cboVivienda" id="cboVivienda" required>
+                                    <option value="">Seleccionar</option>
+                                    {% for v in vivienda %}
+                                    <option value="{{ v.id }}">
+                                        {{ v.descripcionVivienda }}
+                                    </option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input class="save" type="submit" value="Guardar" id="btnGuardar" name="btnGuardar">
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+                <marquee behavior alternate>
+                <h2>{{ mensaje }}</h2>
+                </marquee>
+            </div>
+        </div>
+        
+    </body>
+</html>

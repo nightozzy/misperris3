@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+     <title>Registro Mis Perris</title> 
+     {% load static %}
+     <link rel="stylesheet" href="/static/core/css/estilos.css">
+     <!--<link rel="stylesheet" href="/static/core/css/registroMascotas.css">-->
+     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css" rel="stylesheet" media="screen">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+</head>
+    <body>
+        <header>
+            <img class="logo" src="{% static 'core/img/logo.png' %}" alt="Logo">
+            <ul class="navigation">
+			    <li>
+                    <a href="{% url 'home' %}">Inicio</a>
+                </li>
+                <li>
+                    <a href="{% url 'registroMascotas' %}">Agregar Mascota</a>
+                </li>
+                <li>
+                    <a href="{% url 'listarMascotas' %}" target="">Listar Mascota</a>
+                </li>
+                <li>
+                    <a href="" target="_blank">Actualizar Mascota</a>
+                </li>
+                <li>
+                    <a href="#" target="_blank">Eliminar Mascota</a>
+                </li>
+            </ul>
+        </header>
+        <div>
+            {% block contenido1 %}
+       
+            {% endblock contenido1 %}
+        </div>
+    </body>
+        

@@ -1,0 +1,46 @@
+{% extends 'core/baseCRUD.html' %}
+{% block contenido1 %}   
+<!-- LIST -->
+<div class=col-md-12>
+    
+    <form id="form-list-client">
+            <legend>Lista de mascotas</legend>
+    
+   
+    <table class="table table-bordered table-condensed table-hover">
+        <thead>
+            <tr>
+                <td>Nombre mascotas</td>
+                <td>Raza</td>
+                <td>Genero</td>
+                <td>Fecha ingreso</td>
+                <td>Fecha nacimiento</td>
+                <td>Imagen</td>
+                <td>Estado</td>
+                <td>Opciones</td>
+            </tr>
+                
+        </thead>
+        <tbody id="form-list-client-body">
+            {% for m in Mascota %}
+            <tr>
+                <td>{{m.nombreMascota}}</td>
+                <td>{{m.raza}}</td>
+                <td>{{m.genero}}</td>
+                <td>{{m.fecha_ingreso}}
+                <td>{{m.fecha_nacimiento}}
+                <td><img src="{m.imagen.url}"></td>
+                <td>{{m.estado}}</td>
+                <td>                    
+                    <a href="{% url 'modificarMascotas' m.id %}" title="edit this user" class="btn btn-default btn-sm "> <i class="glyphicon glyphicon-edit text-primary"></i> </a>
+                    <a href="{% url 'eliminarMascota' m.id %}"  class="btn btn-default btn-sm "> <i class="glyphicon glyphicon-trash text-danger"></i> </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </form>
+
+    
+</div>
+{% endblock %}

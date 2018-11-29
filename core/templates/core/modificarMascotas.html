@@ -1,0 +1,129 @@
+{% extends 'core/baseCRUD.html' %}
+{% block contenido1 %}
+    <div class="container">
+	<form class="form-horizontal" action="" method="POST" id="formularioMascotas" enctype="multipart/form-data">
+    {% csrf_token %}
+<fieldset style="width:600px;";>
+
+<!-- Form Name -->
+<legend>Modificar Mascotas</legend>
+
+<div class="form-group">
+  <label class="col-md-4 control-label" for="id">ID</label>
+  <div class="col-md-4">
+    <select name="id" class="form-control">
+      {% for m in Mascota %}
+        {% if m.id == x.id%}
+          <option selected>{{m.id}}</option>
+        {%else%}
+          <option>  {{m.id}}</option>
+        {%endif%}
+      {% endfor%}        
+    </select>
+    <br>
+    <input type="submit" class="menu btn btn-warning" name="btnAccion" value="Buscar"/>
+  </div>  
+</div>
+
+<!-- NOMBRE MASCOTA-->
+<div class="form-group">
+  <label class="col-md-4 control-label"for="id_nombreMascota">NombreMascota:</label>  
+  <div class="col-md-4">
+  <input value="{{x.NombreMascota}}"name="nombreMascota" class="form-control input-md" id="nombreMascota" type="text" placeholder="Ingrese nombre">
+  </div>
+</div>
+
+<!-- RAZA -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="id_nombreMascota">Raza mascota</label>
+  <div class="col-md-4">
+    <select name="raza"  class="form-control" id="raza">
+        <option value="" selected>---------</option>
+        {% for m in Raza %}
+            {% if m.id == x.raza %}
+                <option selected>{{m.descripcionRaza}}</option>
+            {% else %}
+                <option>{{m.descripcionRaza}} </option>
+            {% endif %}
+        {% endfor %}        
+    </select>
+  </div>
+</div>
+
+<!-- SEXO -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="id_genero">Sexo mascota</label>
+  <div class="col-md-4">
+    <select name="genero"  class="form-control" id="id_genero">
+        <option value="" selected>---------</option>
+        {% for g in genero %}
+        <option {% if g.id == mascota.genero.id %}
+                {'selected'}
+                {% endif %}
+                value="{{ g.id }}">
+                {{ g.descripcion }}
+        </option>
+    </select>
+  </div>
+</div>
+
+<!-- FECHA NACIMIENTO-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="id_fecha_nacimientoMascota">Fecha de nacimiento</label>  
+  <div class="col-md-4">
+  <input value="{{x.fecha_nacimientoMascota}}"type="date" class="form-control" name="fecha_nacimientoMascota"  id="fecha_nacimientoMascota">
+  </div>
+</div>
+
+<!-- FECHA INGRESO-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="id_fecha_ingreso">Fecha de ingreso</label>  
+  <div class="col-md-4">
+  <input value="{{x.fecha_ingreso}}" type="date" class="form-control" name="id_fecha_ingreso"  id="id_fecha_ingreso">
+  </div>
+</div>
+
+<!-- Imagen-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="id_imagen">Imagen</label>  
+  <div class="col-md-4">
+            <label class="btn btn-warning">
+                Buscar&hellip; <input name="imagenbox" id="imagenbox" type="file" style="display: none;">
+            </label>
+        </div>
+</div>
+
+<!-- ESTADO -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="id_genero">Estado</label>
+  <div class="col-md-4">
+    <select name="estado"  class="form-control" id="estado">
+        <option >---------</option>
+        {% for m in Estado %}
+          {% if m.id == x.estado%}
+            <option selected>{{m.descripcion}}</option>
+          {% else %}
+            <option>{{m.descripcion}}</option>
+          {% endif %}
+        {% endfor %}
+        
+    </select>
+  </div>
+</div>
+
+<!-- Button -->
+<div class="form-group">
+  <div class="col-md-8">
+    <input class="btn btn-success" type="submit" value="Guardar" id="btnGuardar" name="btnGuardar">
+  </div>
+</div>
+
+</fieldset>
+</form>
+<h3>{{mensaje}}</h3>
+</div>
+{% endblock %}
+
+        
+
+        

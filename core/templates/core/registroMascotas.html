@@ -1,0 +1,98 @@
+{% extends 'core/baseCRUD.html' %}
+{% block contenido1 %}
+<div class="container">
+
+<!-- Form Name -->
+<legend>Registro Mascotas</legend>
+
+<!-- NOMBRE MASCOTA-->
+<div class="responsive" >
+    <div  class="contenedor" style="width: 420px;margin-left: 460px;">
+        <form action="" method="POST" id="clienteFormulario">
+		{% csrf_token %}
+		<table class="center" class="border">
+            <tr>
+                <td class="col-25">
+                    <label for=""><em>*</em>Nombre: </label>
+                </td>
+                <td class="col-75">
+                    <input class="txtbox" type="text" name="txtNombre2" id="txtNombre2" placeholder="Nombre" required>
+                </td>
+            </tr>
+			<tr>
+                <td class="col-25">
+                    <label for=""><em>*</em>Raza</label>
+                </td>
+                <td class="col-75">			
+					<select name="raza" required class="form-control" id="cboRaza">
+						<option value="">Seleccionar</option> 
+						{% for r in raza %}
+						<option value="{{ r.id }}">
+						{{ r.descripcionRaza }}
+						</option>
+						{% endfor %}
+					</select>
+				</td>
+            </tr>
+			<tr>
+                <td class="col-25">
+                    <label for=""><em>*</em>Genero</label>
+                </td>
+                <td class="col-75">			
+					<select name="genero" required class="form-control" id="cboGenero">
+						<option value="">Seleccionar</option> 
+						{% for g in genero %}
+						<option value="{{ r.id }}">
+						{{ g.descripcion }}
+						</option>
+						{% endfor %}
+					</select>
+				</td>
+            </tr>
+			<tr>
+                <td class="col-25">
+                    <label for=""><em>*</em>Estado</label>
+                </td>
+                <td class="col-75">			
+				<select name="genero" required class="form-control" id="cboEstado">
+					<option value="">Seleccionar</option> 
+					{% for e in estado %}
+					<option value="{{ r.id }}">
+					{{ e.descripcion }}
+					</option>
+					{% endfor %}
+				</select>
+				</td>
+            </tr>
+			<tr>
+                <td class="col-25">
+                    <label for=""><em>*</em>Fecha nacimiento de la mascota: </label>
+                </td>
+                <td class="col-75">
+                    <input class="datebox" type="date" name="fecha_nacimientoMascota" id="fecha_nacimientoMascota" required>
+                </td>
+            </tr>
+			<tr>
+                <td class="col-25">
+                    <label for=""><em>*</em>Fecha de ingreso de la mascota: </label>
+                </td>
+                <td class="col-75">
+                    <input class="datebox" type="date" name="fecha_ingresoMascota" id="fecha_ingresoMascota" required>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input class="save" type="submit" value="Guardar" id="btnGuardar" name="btnGuardar">
+                </td>
+            </tr>
+		</table>
+		</form>
+		<marquee behavior alternate>
+		<h2>{{ mensaje }}</h2>
+		</marquee>
+	</div>
+{% endblock %}
+
+        
+
+        
